@@ -1,14 +1,23 @@
 import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Merc!
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	render() {
+	  return (
+	    <div className="App">
+	      <Header logo={this.props.logo} navs={this.props.navs} />
+	    </div>
+	  );
+	}
 }
 
-export default App;
+function mapStateToProps(state) {
+	return {
+		logo: state.logo,
+		navs: state.navs
+	};
+}
+
+export default connect(mapStateToProps)(App);
