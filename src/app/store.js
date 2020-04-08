@@ -2,21 +2,7 @@ import { createStore } from 'redux';
 
 
 const initialState = {
-	logo: "logo.png",
-	navs: [
-		{
-			title: "About",
-			path: "/about"
-		},
-		{
-			title: "How To Play",
-			path: "/how-to-play"
-		},
-		{
-			title: "Contact",
-			path: "/contact"
-		}
-	]
+	logo: "logo.png"
 }
 
 export const store = createStore(mainReduce, initialState);
