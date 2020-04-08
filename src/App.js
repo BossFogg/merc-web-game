@@ -6,7 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Play from './components/Play';
 //import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
 	render() {
@@ -19,17 +19,26 @@ class App extends React.Component {
 	      	</Route>
 	      </Switch>
 	      <Switch>
+	      	<Route exact path="/">
+	      		<Home />
+	      	</Route>
+	      	<Route exact path="/about">
+	      		<About />
+	      	</Route>
+	      	<Route path="/about">
+	      		<Redirect to="/about" />
+	      	</Route>
+	      	<Route exact path="/login">
+	      		<Login />
+	      	</Route>
+	      	<Route path="/login">
+	      		<Redirect to="/login" />
+	      	</Route>
 	      	<Route path="/play">
 	      		<Play />
 	      	</Route>
-	      	<Route path="/about">
-	      		<About />
-	      	</Route>
-	      	<Route path="/login">
-	      		<Login />
-	      	</Route>
 	      	<Route path="/">
-	      		<Home />
+	      		<Redirect to="/" />
 	      	</Route>
 	      </Switch>
 	    </div>
