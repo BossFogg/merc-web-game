@@ -1,5 +1,6 @@
 import React from 'react';
-import NavList from './NavList';
+import MobileNav from './MobileNav';
+import FullNav from './FullNav';
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +10,8 @@ const Header = (props) => {
 			<Link to="/">
 				<Logo />
 			</Link>
-			<NavList />
+			<MobileNav />
+			<FullNav />
 		</header>
 	);
 }
