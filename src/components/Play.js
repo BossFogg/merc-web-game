@@ -10,20 +10,22 @@ const Play = (props) => {
 	return (
 		<>
 			<PlayHeader />
-			<Switch>
-				<Route exact path="/play">
-					<MainMenu />
-				</Route>
-				<Route path="/play/tables">
-					<TableList />
-				</Route>
-				<Route path="/play/table/:tableId">
-					<Table />
-				</Route>
-				<Route path="/play/*">
-					<Redirect to="/play" />
-				</Route>
-			</Switch>
+			<div className="playSpace">
+				<Switch>
+					<Route exact path="/play">
+						<MainMenu />
+					</Route>
+					<Route path="/play/tables">
+						<TableList />
+					</Route>
+					<Route path="/play/table/:tableId">
+						<Table />
+					</Route>
+					<Route path="/play/*">
+						<Redirect to="/play" />
+					</Route>
+				</Switch>
+			</div>
 		</>
 	);
 }
