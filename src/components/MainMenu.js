@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Options from './Options';
 import { Link, Redirect } from 'react-router-dom';
 
 class MainMenu extends React.Component {
@@ -92,6 +93,8 @@ class MainMenu extends React.Component {
 						<Button variant="primary" onClick={this.startGame}>Start</Button>
 					</Modal.Footer>
 				</Modal>
+
+				<Options show={this.state.optionsModal} onHide={this.closeModal} />
 
 			</Container>
 		);
