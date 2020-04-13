@@ -58,3 +58,7 @@ div.playSpace {
 .menuDivider {
     border: 0.5px solid #444444;
 }
+
+.max-500 {
+    max-width: 500px;
+}
