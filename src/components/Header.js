@@ -27,7 +27,7 @@ const Header = (props) => {
 							<NavLink activeClassName="activeNavLink" to="/play">Play!</NavLink>
 						</Nav.Item>
 						<Nav.Item>
-							<NavLink activeClassName="activeNavLink" to="/login">Login/Register</NavLink>
+							<NavLink activeClassName="activeNavLink" to="/auth/login">Login/Register</NavLink>
 						</Nav.Item>
 					</Nav>
 				</NavBar.Collapse>

@@ -48,6 +48,10 @@ header {
 	background-color: #576169;
 }
 
+.max-500 {
+	max-width: 500px;
+}
+
 @media screen and (min-width: 500px) {
 	.mobileNav > ul {
 		width: 30%;

@@ -2,7 +2,8 @@ import { createStore } from 'redux';
 
 
 const initialState = {
-	logo: "/logo.png"
+	logo: "/logo.png",
+	user: null
 }
 
 export const store = createStore(mainReduce, initialState);

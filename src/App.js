@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header';
-import Login from './components/Login';
+import Authentication from './components/Authentication';
 import Home from './components/Home';
 import About from './components/About';
 import Play from './components/Play';
@@ -28,11 +28,8 @@ class App extends React.Component {
 	      	<Route path="/about">
 	      		<Redirect to="/about" />
 	      	</Route>
-	      	<Route exact path="/login">
-	      		<Login />
-	      	</Route>
-	      	<Route path="/login">
-	      		<Redirect to="/login" />
+	      	<Route path="/auth">
+	      		<Authentication />
 	      	</Route>
 	      	<Route path="/play">
 	      		<Play />
