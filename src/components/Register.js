@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
+import { updateUser } from '../app/actionCreators';
+import { connect } from 'react-redux';
 
 class Register extends React.Component {
 	
@@ -30,6 +32,10 @@ class Register extends React.Component {
 		this.validatePassword = this.validatePassword.bind(this);
 		this.validateEmail = this.validateEmail.bind(this);
 		this.validateUserName = this.validateUserName.bind(this);
+	}
+
+	componentDidMount() {
+		console.log(this.state);
 	}
 
 	updateUserName(e) {
@@ -77,9 +83,8 @@ class Register extends React.Component {
 	}
 
 	registrationReady() {
-		let formErrors = this.state.formError;
-		if (!this.state.username || !this.state.email || !this.state.confirmPassword) return false;
-		else if (formErrors.username || formErrors.email || formErrors.password) return false;
+		if (!this.state.userName || !this.state.email || !this.state.confirmPassword) return false;
+		else if (this.state.formError.username || this.state.formError.email || this.state.formError.password) return false;
 		else return true;
 	}
 
@@ -92,20 +97,19 @@ class Register extends React.Component {
 		}
 		axios.post("http://localhost:8000/api/v1/user/new", {newUser})
 			.then(res => {
-				if (res.data.error) {
+				if (res.data.token) {
+					this.props.handleUserUpdate(res.data);
+				}
+				else {
 					this.setState({
 						formError: {
-							server: res.data.error,
+							server: (res.data.error) ? res.data.error : "Unknown Error!",
 							username: "",
 							email: "",
 							password: ""
 						},
 						loading: false
 					});
-				}
-				else {
-					//add user data to global state
-
 				}
 			})
 	}
@@ -173,11 +177,15 @@ class Register extends React.Component {
 						disabled={this.state.loading || !this.registrationReady()} 
 						onClick={this.submitRegistration} 
 						block 
-						variant="primary">Register!</Button>
+						variant="primary">{this.state.loading ? "Loading..." : "Register!"}</Button>
 				</Card.Body>
 			</Card>
 		);
 	}
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => {
+	return { handleUserUpdate: (user) => dispatch(updateUser(user)) };
+}
+
+export default connect(null, mapDispatchToProps)(Register);

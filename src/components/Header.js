@@ -3,9 +3,14 @@ import Logo from './Logo';
 import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/NavBar';
 import Nav from 'react-bootstrap/Nav';
+import ProfileLink from './ProfileLink';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Header = (props) => {
+const Header =(props) => {
+	let login = <NavLink activeClassName="activeNavLink" to="/auth/login">Login/Register</NavLink>;
+	let profile = <ProfileLink logoutUser={props.logoutUser} user={props.user} />;
+
 	return (
 		<NavBar variant="dark" expand="sm">
 			<Container>
@@ -26,8 +31,8 @@ const Header = (props) => {
 						<Nav.Item>
 							<NavLink activeClassName="activeNavLink" to="/play">Play!</NavLink>
 						</Nav.Item>
-						<Nav.Item>
-							<NavLink activeClassName="activeNavLink" to="/auth/login">Login/Register</NavLink>
+						<Nav.Item className="position-relative">
+							{props.user ? profile : login}
 						</Nav.Item>
 					</Nav>
 				</NavBar.Collapse>
@@ -36,4 +41,12 @@ const Header = (props) => {
 	);
 }
 
-export default Header;
+function mapStateToProps(state) {
+	return { user: state.user };
+}
+
+const mapDispatchToProps = dispatch => {
+	return { logoutUser: () => dispatch({type: "LOGOUT"}) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

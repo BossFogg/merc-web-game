@@ -6,10 +6,14 @@ import Table from './Table';
 import MainMenu from './MainMenu';
 import Rules from './Rules';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Play = (props) => {
+	let loginRedirect = <Redirect to="/auth/login" />;
+
 	return (
 		<>
+			{!props.user ? loginRedirect : ""}
 			<PlayHeader />
 			<div className="playSpace">
 				<Switch>
@@ -34,4 +38,8 @@ const Play = (props) => {
 	);
 }
 
-export default Play;
+function mapStateToProps(state) {
+	return { user: state.user };
+}
+
+export default connect(mapStateToProps)(Play);

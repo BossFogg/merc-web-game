@@ -9,6 +9,24 @@ header {
 	background-color: black;
 }
 
+ul.userMenu {
+	position: absolute;
+    background-color: #576169;
+    list-style: none;
+    padding: 0 0.5em 0.2em 0.5em;
+    margin: 0 0.25em;
+    right: 0;
+    top: 0;
+    width: calc(100% - 0.5em);
+    color: #cbe5eb;
+    text-align: right;
+    border-radius: 8px;
+}
+
+ul.userMenu > li {
+	cursor: pointer;
+}
+
 .mainLogo {
 	width: 225px;
 	position: relative;
@@ -22,6 +40,17 @@ header {
 	font-family: 'Titillium Web', sans-serif;
 }
 
+.roundTop {
+	border-radius: 8px 8px 0 0 !important;
+}
+
+.roundBottom {
+	border-radius: 0 0 8px 8px !important;
+}
+
+.i-correct {
+	vertical-align: sub;
+}
 
 /*Tweaks to Bootstrap styles*/
 
@@ -46,6 +75,7 @@ header {
 .nav-item > a:hover {
 	text-decoration: none;
 	background-color: #576169;
+	color: #cbe5eb;
 }
 
 .max-500 {
