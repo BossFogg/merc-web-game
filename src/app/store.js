@@ -3,11 +3,7 @@ import { createStore } from 'redux';
 
 const initialState = {
 	logo: "/logo.png",
-	user: {
-		username: "Jimmy",
-		email: "jimjimmyjimjim@gmail.com",
-		token: "randomstuff"
-	}
+	user: null
 }
 
 export const store = createStore(mainReduce, initialState);

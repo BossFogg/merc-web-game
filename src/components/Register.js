@@ -3,9 +3,12 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import AuthEmail from './AuthEmail';
+import AuthPassword from './AuthPassword';
 import axios from 'axios';
 import { updateUser } from '../app/actionCreators';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Register extends React.Component {
 	
@@ -32,10 +35,6 @@ class Register extends React.Component {
 		this.validatePassword = this.validatePassword.bind(this);
 		this.validateEmail = this.validateEmail.bind(this);
 		this.validateUserName = this.validateUserName.bind(this);
-	}
-
-	componentDidMount() {
-		console.log(this.state);
 	}
 
 	updateUserName(e) {
@@ -89,7 +88,7 @@ class Register extends React.Component {
 	}
 
 	submitRegistration() {
-		this.setState({loading: true, formError: ""});
+		this.setState({loading: true, formError: {email: "", password: "", username: "", server: ""}});
 		let newUser = {
 			username: this.state.userName,
 			email: this.state.email,
@@ -148,21 +147,17 @@ class Register extends React.Component {
 							onBlur={this.validateUserName}
 							placeholder="Jim Holden" />
 
-						<Form.Label className="mb-0">Your Email</Form.Label>
-						<Form.Control 
-							onChange={this.updateEmail}
-							value={this.state.email}
-							onBlur={this.validateEmail}
-							className={(this.state.formError.email) ? "mb-3 border-danger" : "mb-3"}
-							type="email" 
-							placeholder="thedon@rocinante.net" />
+						<AuthEmail 
+							emailValue={this.state.email}
+							updateEmail={this.updateEmail}
+							validateEmail={this.validateEmail}
+							emailError={this.state.formError.email} />
 
-						<Form.Label className="mb-0">Password</Form.Label>
-						<Form.Control 
-							onChange={this.updatePassword}
-							value={this.state.password}
-							className="mb-3" 
-							type="password" />
+						<AuthPassword 
+							passwordValue={this.state.password}
+							updatePassword={this.updatePassword}
+							validatePassword={this.validatePassword}
+							passwordError={this.state.formError.password} />
 
 						<Form.Label className="mb-0">Confirm Password</Form.Label>
 						<Form.Control 
@@ -178,6 +173,11 @@ class Register extends React.Component {
 						onClick={this.submitRegistration} 
 						block 
 						variant="primary">{this.state.loading ? "Loading..." : "Register!"}</Button>
+
+					<p className="text-center mt-3">
+						<span>Already have an account? </span>
+						<Link to="/auth/login">Sign In!</Link>
+					</p>
 				</Card.Body>
 			</Card>
 		);

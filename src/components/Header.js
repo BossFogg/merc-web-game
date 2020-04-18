@@ -8,7 +8,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const Header =(props) => {
-	let login = <NavLink activeClassName="activeNavLink" to="/auth/login">Login/Register</NavLink>;
+	let login = <NavLink activeClassName="activeNavLink" to="/auth">Login/Register</NavLink>;
 	let profile = <ProfileLink logoutUser={props.logoutUser} user={props.user} />;
 
 	return (
