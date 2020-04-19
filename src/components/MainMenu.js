@@ -70,6 +70,9 @@ class MainMenu extends React.Component {
 							<Button className="my-2" block variant="primary">The Rules</Button>
 						</Link>
 						<Button onClick={this.openOptionsModal} className="my-2" block variant="primary">Options</Button>
+						<Link to="/">
+							<Button className="my-2" block variant="primary">Exit Game</Button>
+						</Link>
 						<hr className="menuDivider" />
 					</Card.Body>
 				</Card>

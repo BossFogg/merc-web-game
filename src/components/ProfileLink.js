@@ -23,14 +23,14 @@ class ProfileLink extends React.Component {
 					<i className="material-icons i-correct">person</i>
 					{this.props.user.username}
 				</li>
-				<li>Profile</li>
+				<li className="border-top border-secondary">Profile</li>
 				<li onClick={this.props.logoutUser}>Logout</li>
 			</ul>
 		);
 
 		return (
 			<>
-				<a className={this.state.listVis ? "activeNavLink roundTop" : ""} onMouseEnter={this.showList}>
+				<a className="activeNavLink" onMouseEnter={this.showList}>
 					<i className="material-icons i-correct">person</i>
 					{this.props.user.username}
 				</a>

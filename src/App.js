@@ -25,14 +25,12 @@ class App extends React.Component {
 	
 	componentDidMount() {
 		let token = this.cookies.get("token");
-		if (!token) {
-			this.setState({loading: false});
-			this.cookies.set("token", "myToken");
-		}
+		//console.log(token);
+		if (!token) this.setState({loading: false});
 		else {
 			axios.get("http://localhost:8000/api/v1/user/session/" + token)
 				.then(res => {
-					console.log(res);
+					//console.log(res);
 					if (res.data.token) this.props.handleUserUpdate(res.data);
 					else this.cookies.remove("token");
 					this.setState({loading: false});

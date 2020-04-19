@@ -6,8 +6,9 @@ import Nav from 'react-bootstrap/Nav';
 import ProfileLink from './ProfileLink';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logoutUser } from '../app/actionCreators';
 
-const Header =(props) => {
+const Header = (props) => {
 	let login = <NavLink activeClassName="activeNavLink" to="/auth">Login/Register</NavLink>;
 	let profile = <ProfileLink logoutUser={props.logoutUser} user={props.user} />;
 
@@ -46,7 +47,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => {
-	return { logoutUser: () => dispatch({type: "LOGOUT"}) };
+	return { logoutUser: () => dispatch(logoutUser()) };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
