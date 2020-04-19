@@ -5,12 +5,15 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import AuthEmail from './AuthEmail';
 import AuthPassword from './AuthPassword';
+import Cookies from 'universal-cookie';
 import axios from 'axios';
 import { updateUser } from '../app/actionCreators';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Register extends React.Component {
+	
+	cookies = new Cookies();
 	
 	constructor(props) {
 		super(props);
@@ -98,6 +101,7 @@ class Register extends React.Component {
 			.then(res => {
 				if (res.data.token) {
 					this.props.handleUserUpdate(res.data);
+					this.cookies.set("token", res.data.token, {path: "/"});
 				}
 				else {
 					this.setState({

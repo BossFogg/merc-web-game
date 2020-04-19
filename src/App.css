@@ -52,6 +52,12 @@ ul.userMenu > li {
 	vertical-align: sub;
 }
 
+.fixedSpinner {
+	position: fixed;
+    top: calc(50% - 18px);
+    left: calc(50% - 18px);
+}
+
 /*Tweaks to Bootstrap styles*/
 
 .navbar {

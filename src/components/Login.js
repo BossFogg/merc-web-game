@@ -6,12 +6,15 @@ import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 import AuthEmail from './AuthEmail';
 import AuthPassword from './AuthPassword';
+import Cookies from 'universal-cookie';
 import { connect } from 'react-redux';
 import { updateUser } from '../app/actionCreators';
 import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
 	
+	cookies = new Cookies();
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -78,6 +81,7 @@ class Login extends React.Component {
 		axios.post("http://localhost:8000/api/v1/user/login", {login})
 			.then(res => {
 				if (res.data.token) {
+					this.cookies.set("token", res.data.token, {path: "/"});
 					this.props.handleUserUpdate(res.data);
 				}
 				else {
