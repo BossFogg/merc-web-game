@@ -10,11 +10,10 @@ import { connect } from 'react-redux';
 
 const Play = (props) => {
 	let loginRedirect = <Redirect to="/auth/login" />;
-
+	
 	return (
 		<>
-			{!props.user ? loginRedirect : ""}
-			<PlayHeader />
+			{!props.user ? loginRedirect : <PlayHeader />}
 			<div className="playSpace">
 				<Switch>
 					<Route exact path="/play">

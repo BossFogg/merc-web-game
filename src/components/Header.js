@@ -11,10 +11,15 @@ import { logoutUser } from '../app/actionCreators';
 const Header = (props) => {
 	let login = <NavLink activeClassName="activeNavLink" to="/auth">Login/Register</NavLink>;
 	let profile = <ProfileLink logoutUser={props.logoutUser} user={props.user} />;
+	let play = (
+		<Nav.Item>
+			<NavLink activeClassName="activeNavLink" to="/play">Play!</NavLink>
+		</Nav.Item>
+	);
 
 	return (
-		<NavBar variant="dark" expand="sm">
-			<Container>
+		<NavBar fixed="top" className="px-0" variant="dark" expand="sm">
+			<Container className="max-900">
 				<NavBar.Brand>
 					<Link to="/">
 						<Logo size="small" />
@@ -29,9 +34,7 @@ const Header = (props) => {
 						<Nav.Item>
 							<NavLink activeClassName="activeNavLink" to="/about">About</NavLink>
 						</Nav.Item>
-						<Nav.Item>
-							<NavLink activeClassName="activeNavLink" to="/play">Play!</NavLink>
-						</Nav.Item>
+						{(props.user && props.user.gameAccess) ? play : ""}
 						<Nav.Item className="position-relative">
 							{props.user ? profile : login}
 						</Nav.Item>

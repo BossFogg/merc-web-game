@@ -1,3 +1,22 @@
+html {
+	height: 100vh;
+}
+
+body {
+	min-height: 100vh;
+}
+
+div#root {
+	min-height: 100vh;
+}
+
+div.App {
+	min-height: 100vh;
+	padding: 4.25em 0;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;
+}
+
 header {
 	border-bottom: 1px solid grey;
 	padding: 1em;
@@ -7,6 +26,18 @@ header {
 	width: 100%;
 	box-sizing: border-box;
 	background-color: black;
+}
+
+footer {
+	background-color: black;
+	color: grey;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+footer a {
+	color: grey;
 }
 
 ul.userMenu {
@@ -34,10 +65,6 @@ ul.userMenu > li {
 
 .activeNavLink {
 	background-color: #576169;
-}
-
-.App {
-	font-family: 'Titillium Web', sans-serif;
 }
 
 .roundTop {
@@ -86,6 +113,10 @@ ul.userMenu > li {
 
 .max-500 {
 	max-width: 500px;
+}
+
+.max-900 {
+	max-width: 900px;
 }
 
 @media screen and (min-width: 500px) {

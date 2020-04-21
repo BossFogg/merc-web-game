@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Authentication from './components/Authentication';
 import Home from './components/Home';
 import About from './components/About';
@@ -65,6 +66,12 @@ class App extends React.Component {
 				</Route>
 				<Route path="/">
 					<Redirect to="/" />
+				</Route>
+			</Switch>
+			<Switch>
+				<Route path="/play"></Route>
+				<Route path="/">
+				<Footer />
 				</Route>
 			</Switch>
 		  </>

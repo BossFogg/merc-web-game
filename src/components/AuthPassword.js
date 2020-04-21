@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 const AuthPassword = (props) => {
 	return (
 		<>
-			<Form.Label className="mb-0">Your Email</Form.Label>
+			<Form.Label className="mb-0">Your Password</Form.Label>
 			<Form.Control 
 				onChange={props.updatePassword}
 				value={props.passwordValue}

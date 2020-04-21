@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class InGameMenu extends React.Component {
 	
@@ -21,8 +22,12 @@ class InGameMenu extends React.Component {
 	render() {
 		let dropdown = (
 			<ul>
-				<li className="px-2">Main Menu</li>
-				<li className="px-2">Exit Game</li>
+				<li className="px-2">
+					<Link to="/play">Main Menu</Link>
+				</li>
+				<li className="px-2">
+					<Link to="/">Exit Game</Link>
+				</li>
 			</ul>
 		);
 

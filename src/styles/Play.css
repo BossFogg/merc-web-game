@@ -1,8 +1,9 @@
 header.gameHeader {
 	padding: 0.5em 2em;
-    /*background-image: linear-gradient(black, black, black, black, black, #a9a9ff, transparent);*/
     border-bottom: none;
     z-index: 5;
+    border-bottom: 1px solid #a9a9ff;
+    box-shadow: 0 2px 12px 2px #a9a9ff;
 }
 
 div.menuBtn {
@@ -42,6 +43,11 @@ div.menuBtn > ul {
 
 div.menuBtn > ul > li:hover {
     background-color: #00589e;
+}
+
+div.menuBtn a {
+    color: #cbe5eb;
+    text-decoration: none;
 }
 
 i.text-top {
