@@ -78,7 +78,7 @@ class Login extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		}
-		axios.post("http://localhost:8000/api/v1/user/login", {login})
+		axios.post("http://localhost:8000/api/v1/auth/login", {login})
 			.then(res => {
 				if (res.data.token) {
 					this.cookies.set("token", res.data.token, {path: "/"});
