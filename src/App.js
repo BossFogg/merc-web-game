@@ -45,7 +45,7 @@ class App extends React.Component {
 			<Switch>
 				<Route path="/play"></Route>
 				<Route path="/">
-				<Header />
+					<Header />
 				</Route>
 			</Switch>
 			<Switch>

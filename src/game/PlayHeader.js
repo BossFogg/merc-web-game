@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from './Logo';
+import Logo from '../components/Logo';
 import InGameMenu from './InGameMenu';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';

@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles/Play.css'
-import PlayHeader from './PlayHeader';
-import TableList from './TableList';
-import Table from './Table';
-import MainMenu from './MainMenu';
-import Rules from './Rules';
+import PlayHeader from '../game/PlayHeader';
+import TableList from '../game/TableList';
+import Table from '../game/Table';
+import MainMenu from '../game/MainMenu';
+import Rules from '../game/Rules';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
