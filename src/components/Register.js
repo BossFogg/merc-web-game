@@ -12,9 +12,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Register extends React.Component {
-	
+
 	cookies = new Cookies();
-	
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -144,39 +144,47 @@ class Register extends React.Component {
 						{(errors.length) ? formErr : ""}
 
 						<Form.Label className="mb-0">User Name </Form.Label>
-						<Form.Control 
-							onChange={this.updateUserName} 
+						<Form.Control
+							onChange={this.updateUserName}
 							className={(this.state.formError.username) ? "mb-3 border-danger" : "mb-3"}
 							value={this.state.userName}
 							onBlur={this.validateUserName}
 							placeholder="Jim Holden" />
 
-						<AuthEmail 
+						<AuthEmail
 							emailValue={this.state.email}
 							updateEmail={this.updateEmail}
 							validateEmail={this.validateEmail}
 							emailError={this.state.formError.email} />
 
-						<AuthPassword 
+						<AuthPassword
 							passwordValue={this.state.password}
 							updatePassword={this.updatePassword}
 							validatePassword={this.validatePassword}
 							passwordError={this.state.formError.password} />
 
 						<Form.Label className="mb-0">Confirm Password</Form.Label>
-						<Form.Control 
+						<Form.Control
 							onChange={this.updateConfirmPassword}
 							value={this.state.confirmPassword}
 							onBlur={this.validatePassword}
 							className={(this.state.formError.password) ? "mb-3 border-danger" : "mb-3"}
 							type="password" />
 
+						<Form.Text className="mb-2 text-center">
+							By filling out and submitting this form you confirm that you have
+							read and understand our Privacy Policy and Terms of Use.
+						</Form.Text>
+
+						<Button
+							disabled={this.state.loading || !this.registrationReady()}
+							onClick={this.submitRegistration}
+							block
+							variant="primary">{this.state.loading ? "Loading..." : "Register!"}
+						</Button>
+
 					</Form>
-					<Button 
-						disabled={this.state.loading || !this.registrationReady()} 
-						onClick={this.submitRegistration} 
-						block 
-						variant="primary">{this.state.loading ? "Loading..." : "Register!"}</Button>
+
 
 					<p className="text-center mt-3">
 						<span>Already have an account? </span>

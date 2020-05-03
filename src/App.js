@@ -29,7 +29,7 @@ class App extends React.Component {
 		//console.log(token);
 		if (!token) this.setState({loading: false});
 		else {
-			axios.get("http://localhost:8000/api/v1/user/session/" + token)
+			axios.get("http://localhost:8000/api/v1/auth/session/" + token)
 				.then(res => {
 					//console.log(res);
 					if (res.data.token) this.props.handleUserUpdate(res.data);
