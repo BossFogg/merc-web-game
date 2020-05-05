@@ -25,6 +25,7 @@ class Login extends React.Component {
 				password: "",
 				server: ""
 			},
+			createCookie: false,
 			loading: false
 		}
 		this.updateEmail = this.updateEmail.bind(this);
@@ -33,6 +34,7 @@ class Login extends React.Component {
 		this.validatePassword = this.validatePassword.bind(this);
 		this.loginReady = this.loginReady.bind(this);
 		this.submitLogin = this.submitLogin.bind(this);
+		this.toggleCookies = this.toggleCookies.bind(this);
 	}
 
 	updateEmail(e) {
@@ -72,6 +74,8 @@ class Login extends React.Component {
 		else return true;
 	}
 
+	toggleCookies() { this.setState({createCookie: !this.state.createCookie}); }
+
 	submitLogin() {
 		this.setState({loading: true, formError: {email: "", password: "", server: ""}});
 		let login = {
@@ -81,7 +85,8 @@ class Login extends React.Component {
 		axios.post("http://localhost:8000/api/v1/auth/login", {login})
 			.then(res => {
 				if (res.data.token) {
-					this.cookies.set("token", res.data.token, {path: "/"});
+					if (this.state.setCookie) this.cookies.set("token", res.data.token, {path: "/"});
+					sessionStorage.setItem("token", res.data.token);
 					this.props.handleUserUpdate(res.data);
 				}
 				else {
@@ -135,13 +140,21 @@ class Login extends React.Component {
 							updatePassword={this.updatePassword}
 							validatePassword={this.validatePassword}
 							passwordError={this.state.formError.password} />
+						
+						<Form.Group className="mb-3" onClick={this.toggleCookies}>
+							<Form.Check
+								checked={this.state.createCookie}
+								readOnly
+								type="checkbox" 
+								label="Remember me on this computer" />
+						</Form.Group>
 
+						<Button 
+							disabled={this.state.loading || !this.loginReady()} 
+							onClick={this.submitLogin} 
+							block 
+							variant="primary">{this.state.loading ? "Loading..." : "Login!"}</Button>
 					</Form>
-					<Button 
-						disabled={this.state.loading || !this.loginReady()} 
-						onClick={this.submitLogin} 
-						block 
-						variant="primary">{this.state.loading ? "Loading..." : "Login!"}</Button>
 
 					<p className="text-center mt-3">
 						<span>New here? </span>

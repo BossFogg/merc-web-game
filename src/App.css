@@ -85,6 +85,10 @@ ul.userMenu > li {
     left: calc(50% - 18px);
 }
 
+.profile-text {
+	font-size: 1.5em;
+}
+
 /*Tweaks to Bootstrap styles*/
 
 .navbar {
@@ -103,6 +107,11 @@ ul.userMenu > li {
 	padding: 0em 0.5em;
 	color: #cbe5eb;
 	border-radius: 8px;
+}
+
+.nav-item li > a {
+	color: #cbe5eb;
+	text-decoration: none;
 }
 
 .nav-item > a:hover {

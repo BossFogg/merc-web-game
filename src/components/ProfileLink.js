@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ProfileLink extends React.Component {
 	constructor(props) {
@@ -23,7 +24,9 @@ class ProfileLink extends React.Component {
 					<i className="material-icons i-correct">person</i>
 					{this.props.user.username}
 				</li>
-				<li className="border-top border-secondary">Profile</li>
+				<li className="border-top border-secondary">
+					<Link to="/user">Profile</Link>
+				</li>
 				<li onClick={this.props.logoutUser}>Logout</li>
 			</ul>
 		);

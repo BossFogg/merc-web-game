@@ -12,5 +12,6 @@ export const updateUser = (user) => {
 export const logoutUser = () => {
 	let cookies = new Cookies();
 	cookies.remove("token");
+	sessionStorage.removeItem("token");
 	return { type: "LOGOUT" };
 }

@@ -6,6 +6,7 @@ import Authentication from './components/Authentication';
 import Home from './components/Home';
 import About from './components/About';
 import Play from './components/Play';
+import Profile from './components/Profile';
 import Spinner from 'react-bootstrap/Spinner';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
@@ -26,20 +27,35 @@ class App extends React.Component {
 	
 	componentDidMount() {
 		let token = this.cookies.get("token");
-		//console.log(token);
+		token = (token) ? token : sessionStorage.getItem("token");
 		if (!token) this.setState({loading: false});
 		else {
 			axios.get("http://localhost:8000/api/v1/auth/session/" + token)
 				.then(res => {
-					//console.log(res);
+					console.log(res);
 					if (res.data.token) this.props.handleUserUpdate(res.data);
-					else this.cookies.remove("token");
+					else {
+						this.cookies.remove("token");
+						sessionStorage.removeItem("token");
+					}
 					this.setState({loading: false});
+					console.log(this.props.user);
 				})
 		}
 	}
 
 	render() {
+	    const profile = (
+	    	<>
+		    	<Route exact path="/user">
+					<Profile />
+				</Route>
+				<Route path="/user">
+					<Redirect to="/user" />
+				</Route>
+			</>
+	    );
+
 	    const routes = (
 	  	  <>
 			<Switch>
@@ -64,6 +80,7 @@ class App extends React.Component {
 				<Route path="/play">
 					<Play />
 				</Route>
+				{this.props.user ? profile : ""}
 				<Route path="/">
 					<Redirect to="/" />
 				</Route>
@@ -95,4 +112,8 @@ const mapDispatchToProps = dispatch => {
 	return { handleUserUpdate: (user) => dispatch(updateUser(user)) };
 }
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => {
+	return { user: state.user };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
