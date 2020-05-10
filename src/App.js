@@ -7,6 +7,8 @@ import Home from './components/Home';
 import About from './components/About';
 import Play from './components/Play';
 import Profile from './components/Profile';
+import Contact from './components/Contact';
+import News from './components/News';
 import Spinner from 'react-bootstrap/Spinner';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
@@ -68,11 +70,17 @@ class App extends React.Component {
 				<Route exact path="/">
 					<Home />
 				</Route>
+				<Route path="/news">
+					<News />
+				</Route>
 				<Route exact path="/about">
 					<About />
 				</Route>
 				<Route path="/about">
 					<Redirect to="/about" />
+				</Route>
+				<Route path="/contact">
+					<Contact />
 				</Route>
 				<Route path="/auth">
 					<Authentication />
@@ -88,7 +96,7 @@ class App extends React.Component {
 			<Switch>
 				<Route path="/play"></Route>
 				<Route path="/">
-				<Footer />
+					<Footer />
 				</Route>
 			</Switch>
 		  </>

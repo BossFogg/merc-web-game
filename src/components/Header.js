@@ -29,10 +29,13 @@ const Header = (props) => {
 				<NavBar.Collapse id="basic-navbar-nav">
 					<Nav className="ml-auto">
 						<Nav.Item>
-							<NavLink exact activeClassName="activeNavLink" to="/">Home</NavLink>
+							<NavLink exact activeClassName="activeNavLink" to="/news">News</NavLink>
 						</Nav.Item>
 						<Nav.Item>
-							<NavLink activeClassName="activeNavLink" to="/about">About</NavLink>
+							<NavLink activeClassName="activeNavLink" to="/about">FAQ</NavLink>
+						</Nav.Item>
+						<Nav.Item>
+							<NavLink activeClassName="activeNavLink" to="/contact">Contact</NavLink>
 						</Nav.Item>
 						{(props.user && props.user.gameAccess) ? play : ""}
 						<Nav.Item className="position-relative min-100">
