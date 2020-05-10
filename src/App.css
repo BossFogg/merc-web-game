@@ -128,6 +128,10 @@ ul.userMenu > li {
 	max-width: 900px;
 }
 
+.min-100 {
+	min-width: 100px;
+}
+
 @media screen and (min-width: 500px) {
 	.mobileNav > ul {
 		width: 30%;

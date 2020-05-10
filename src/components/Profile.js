@@ -31,10 +31,12 @@ class Profile extends React.Component {
 
 	constructor(props)  {
 		super(props);
-		this.state = this.startState;
+		this.state = Object.assign({}, this.startState, {
+			news: this.props.user.newsletter,
+			update: this.props.user.updates
+		});
 
-		this.toggleNewsPref = this.toggleNewsPref.bind(this);
-		this.toggleUpdatePref = this.toggleUpdatePref.bind(this);
+		this.updateEmailPrefs = this.updateEmailPrefs.bind(this);
 		this.changeUsername = this.changeUsername.bind(this);
 		this.toggleEditingState = this.toggleEditingState.bind(this);
 		this.changePassword = this.changePassword.bind(this);
@@ -46,6 +48,12 @@ class Profile extends React.Component {
 		this.validNewPass = this.validNewPass.bind(this);
 		this.validConfirmPass = this.validConfirmPass.bind(this);
 		this.validNewName = this.validNewName.bind(this);
+		this.setNewsletterPref = this.setNewsletterPref.bind(this);
+		this.setUpdatesPref = this.setUpdatesPref.bind(this);
+	}
+
+	componentDidRender() {
+		console.log(this.props.user);
 	}
 
 	setOldPass(e) {
@@ -64,6 +72,27 @@ class Profile extends React.Component {
 		this.setState({newName: e.target.value});
 	}
 
+	setNewsletterPref(e) {
+		this.setState({news: e.target.checked});
+	}
+
+	setUpdatesPref(e) {
+		this.setState({update: e.target.checked});
+	}
+
+	resetFormValues() { 
+		this.setState(this.startState);
+		this.setState({
+			news: this.props.user.newsletter,
+			update: this.props.user.updates
+		});
+	}
+
+	toggleEditingState(editing) {
+		this.resetFormValues();
+		this.setState({openForm: editing});
+	}
+
 	changeUsername() {
 		if (!this.state.oldPass || !this.state.newName) return;
 		else {
@@ -77,7 +106,6 @@ class Profile extends React.Component {
 				headers: {
 					'Authorization': `Bearer ${this.props.user.token}`}})
 				.then(res => {
-					console.log(res);
 					if (res.data.error) this.setState({
 						formError: {serverError: res.data.error},
 						usernameLoading: false
@@ -116,23 +144,23 @@ class Profile extends React.Component {
 		}
 	}
 
-	resetFormValues() { this.setState(this.startState) }
-
-	toggleEditingState(editing) {
-		this.resetFormValues();
-		this.setState({openForm: editing});
-	}
-
-	toggleNewsPref() {
-		//send update to db
-		//on response, update user in store
-		console.log("changing news preference");
-	}
-
-	toggleUpdatePref() {
-		//send update to db
-		//on response, update user in store
-		console.log("changing update preference");
+	updateEmailPrefs() {
+		let prefs = { newsletter: this.state.news, updates: this.state.update};
+		this.setState({emailPrefLoading: true});
+		axios.post("http://localhost:8000/api/v1/user/email", prefs, {
+			headers: {
+				'Authorization': `Bearer ${this.props.user.token}`}})
+			.then(res => {
+				if (res.data.error) this.setState({
+					formError: {serverError: res.data.error},
+					emailPrefLoading: false
+				});
+				else {
+					this.props.handleUserUpdate(Object.assign({}, this.props.user, prefs));
+					this.resetFormValues();
+					this.setState({formSuccess: "Preferences Updated Successfully"});
+				}
+			})
 	}
 
 	validNewName() {
@@ -182,9 +210,9 @@ class Profile extends React.Component {
 			<Container className="mb-5 max-500">
 				<Card className="mt-3">
 					<Card.Body>
-						<Card.Title className="text-center">
-							Your Profile
-						</Card.Title>
+						<h2 className="text-center mb-3">
+							Account Settings
+						</h2>
 						{success}
 						<Form>
 							<Username 
@@ -214,9 +242,13 @@ class Profile extends React.Component {
 								confirmPassInput={this.setConfirmPass}
 								validConfirmPass={this.validConfirmPass} />
 							<EmailPref 
-								user={this.props.user}
-								newsPrefChange={this.toggleNewsPref}
-								updatePrefChange={this.toggleUpdatePref} />
+								formOpen={this.state.openForm === "email" ? true : false}
+								news={this.state.news}
+								update={this.state.update}
+								updateEmailPrefs={this.updateEmailPrefs}
+								toggleForm={this.toggleEditingState}
+								setNews={this.setNewsletterPref}
+								setUpdate={this.setUpdatesPref} />
 						</Form>
 					</Card.Body>
 				</Card>

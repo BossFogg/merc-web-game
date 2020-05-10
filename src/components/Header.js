@@ -35,7 +35,7 @@ const Header = (props) => {
 							<NavLink activeClassName="activeNavLink" to="/about">About</NavLink>
 						</Nav.Item>
 						{(props.user && props.user.gameAccess) ? play : ""}
-						<Nav.Item className="position-relative">
+						<Nav.Item className="position-relative min-100">
 							{props.user ? profile : login}
 						</Nav.Item>
 					</Nav>

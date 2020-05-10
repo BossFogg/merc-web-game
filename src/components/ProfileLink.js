@@ -25,7 +25,7 @@ class ProfileLink extends React.Component {
 					{this.props.user.username}
 				</li>
 				<li className="border-top border-secondary">
-					<Link to="/user">Profile</Link>
+					<Link to="/user">Account</Link>
 				</li>
 				<li onClick={this.props.logoutUser}>Logout</li>
 			</ul>

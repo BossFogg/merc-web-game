@@ -80,13 +80,13 @@ class Password extends React.Component {
 		);
 
 		const passContainer = (
-			<Row className="py-2 border-bottom">
+			<Row className="py-2 border-top">
 				{(this.props.formOpen) ? passEdit : passDisplay}
 			</Row>
 		);
 
 		const loadingContainer = (
-			<Row className="justify-content-center border-top border-bottom py-2">
+			<Row className="justify-content-center border-top py-2">
 				<Col className="col-auto">
 					<Spinner animation="border" role="status">
 						<span className="sr-only">Loading...</span>
