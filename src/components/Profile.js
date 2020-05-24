@@ -102,7 +102,7 @@ class Profile extends React.Component {
 				newName: this.state.newName
 			}
 			// send new username with current credentials to server
-			axios.post("http://localhost:8000/api/v1/user/name", data, {
+			axios.post("https://interstellarmerc.com/api/v1/user/name", data, {
 				headers: {
 					'Authorization': `Bearer ${this.props.user.token}`}})
 				.then(res => {
@@ -128,7 +128,7 @@ class Profile extends React.Component {
 				newPass: this.state.newPass
 			}
 			// send new password with current credentials to server
-			axios.post("http://localhost:8000/api/v1/auth/password/change", data, {
+			axios.post("https://interstellarmerc.com/api/v1/auth/password/change", data, {
 				headers: {
 					'Authorization': `Bearer ${this.props.user.token}`}})
 				.then(res => {
@@ -147,7 +147,7 @@ class Profile extends React.Component {
 	updateEmailPrefs() {
 		let prefs = { newsletter: this.state.news, updates: this.state.update};
 		this.setState({emailPrefLoading: true});
-		axios.post("http://localhost:8000/api/v1/user/email", prefs, {
+		axios.post("https://interstellarmerc.com/api/v1/user/email", prefs, {
 			headers: {
 				'Authorization': `Bearer ${this.props.user.token}`}})
 			.then(res => {

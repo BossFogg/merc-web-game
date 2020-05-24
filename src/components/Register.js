@@ -97,7 +97,7 @@ class Register extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		}
-		axios.post("http://localhost:8000/api/v1/user/new", {newUser})
+		axios.post("https://interstellarmerc.com/api/v1/user/new", {newUser})
 			.then(res => {
 				if (res.data.token) {
 					this.props.handleUserUpdate(res.data);

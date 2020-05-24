@@ -9,8 +9,8 @@ const Home = (props) => {
 			<p>
 				This site is host to Interstellar Merc!, an upcoming game that has the soul of a tabletop gaming 
 				experience, wrapped up in a sleek multi-player game that can be enjoyed from the comfort of your 
-				favorite web browser. Want to know more? Check out the <Link to="/about">FAQ</Link> and <Link to="/newsletter">
-				sign up for our newsletter</Link> to stay aprised of the latest developments.
+				favorite web browser. Want to know more? <Link to="/newsletter">
+				Sign up for our newsletter</Link> to stay aprised of the latest developments.
 			</p>
 		</Container>
 	);

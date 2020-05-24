@@ -82,7 +82,7 @@ class Login extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		}
-		axios.post("http://localhost:8000/api/v1/auth/login", {login})
+		axios.post("https://interstellarmerc.com/api/v1/auth/login", {login})
 			.then(res => {
 				if (res.data.token) {
 					if (this.state.setCookie) this.cookies.set("token", res.data.token, {path: "/"});

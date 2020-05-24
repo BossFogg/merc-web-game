@@ -32,7 +32,7 @@ class App extends React.Component {
 		token = (token) ? token : sessionStorage.getItem("token");
 		if (!token) this.setState({loading: false});
 		else {
-			axios.get("http://localhost:8000/api/v1/auth/session/" + token)
+			axios.get("https://interstellarmerc.com/api/v1/auth/session/" + token)
 				.then(res => {
 					console.log(res);
 					if (res.data.token) this.props.handleUserUpdate(res.data);
