@@ -85,7 +85,7 @@ class Login extends React.Component {
 		axios.post("https://interstellarmerc.com/api/v1/auth/login", {login})
 			.then(res => {
 				if (res.data.token) {
-					if (this.state.setCookie) this.cookies.set("token", res.data.token, {path: "/"});
+					if (this.state.createCookie) this.cookies.set("token", res.data.token, {path: "/"});
 					sessionStorage.setItem("token", res.data.token);
 					this.props.handleUserUpdate(res.data);
 				}
